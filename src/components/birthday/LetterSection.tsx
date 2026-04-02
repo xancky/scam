@@ -6,15 +6,15 @@ const LetterSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="py-24 md:py-36 px-6 bg-gradient-section">
+    <section ref={ref} className="py-28 md:py-40 px-6 bg-gradient-section">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.9 }}
+          className="text-center mb-14"
         >
-          <p className="font-body text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
+          <p className="font-body text-xs tracking-[0.4em] uppercase text-muted-foreground mb-5">
             Written just for you
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground">
@@ -23,43 +23,40 @@ const LetterSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 60, rotateX: 5 }}
-          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
-          className="bg-paper rounded-sm p-8 md:p-14 shadow-romantic relative"
+          className="bg-paper rounded-sm p-10 md:p-16 shadow-romantic relative"
           style={{
             backgroundImage: `
               repeating-linear-gradient(
                 transparent,
                 transparent 31px,
-                hsl(340 20% 80% / 0.15) 31px,
-                hsl(340 20% 80% / 0.15) 32px
+                hsl(345 15% 75% / 0.12) 31px,
+                hsl(345 15% 75% / 0.12) 32px
               )
             `,
             backgroundPosition: "0 40px",
           }}
         >
-          {/* Decorative top border */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          
-          {/* Red margin line */}
-          <div className="absolute top-0 bottom-0 left-16 md:left-20 w-px bg-primary/15" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+          <div className="absolute top-0 bottom-0 left-16 md:left-20 w-px bg-primary/10" />
 
           <div className="pl-6 md:pl-10">
             <motion.h3
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="font-letter text-2xl md:text-3xl italic text-burgundy mb-8"
+              transition={{ delay: 0.6, duration: 0.9 }}
+              className="font-letter text-2xl md:text-3xl italic text-burgundy mb-10"
             >
-              My Dearest Love,
+              My Dearest,
             </motion.h3>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.8, duration: 1 }}
-              className="font-letter text-lg md:text-xl leading-[2] text-burgundy/85 space-y-6"
+              transition={{ delay: 0.8, duration: 1.2 }}
+              className="font-letter text-lg md:text-xl leading-[2] text-burgundy/80 space-y-7"
             >
               <p>
                 On this beautiful day, the world became a little more magical because you were born into it. 
@@ -85,16 +82,15 @@ const LetterSection = () => {
                 Happy Birthday, my love. Today is yours — and so is my heart. Forever.
               </p>
 
-              <p className="text-right pt-4">
-                <span className="font-display text-xl italic text-primary">
-                  — With all my love, always ♥
+              <p className="text-right pt-6">
+                <span className="font-display text-lg italic text-primary">
+                  — With all my love, always
                 </span>
               </p>
             </motion.div>
           </div>
 
-          {/* Decorative bottom */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         </motion.div>
       </div>
     </section>

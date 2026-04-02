@@ -12,33 +12,33 @@ const HeroSection = () => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-background/30" />
+        <div className="absolute inset-0 bg-background/40" />
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
         >
           <motion.p
-            className="font-body text-sm tracking-[0.3em] uppercase text-muted-foreground mb-6"
+            className="font-body text-xs tracking-[0.4em] uppercase text-muted-foreground mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
+            transition={{ delay: 0.6, duration: 1.2 }}
           >
             A celebration of you
           </motion.p>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
             <span className="text-gradient-rose">Happy Birthday</span>
           </h1>
 
           <motion.p
-            className="font-display text-xl md:text-2xl italic text-foreground/80 mb-8"
+            className="font-letter text-xl md:text-2xl italic text-foreground/70 mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 1 }}
+            transition={{ delay: 1, duration: 1.2 }}
           >
             To the one who makes every day feel like a love story
           </motion.p>
@@ -46,45 +46,19 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 1 }}
+            transition={{ delay: 1.8, duration: 1 }}
             className="flex justify-center"
           >
             <motion.div
               animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="text-primary text-2xl"
+              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+              className="text-muted-foreground text-lg"
             >
               ↓
             </motion.div>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Floating petals */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute text-primary/30 text-2xl"
-          style={{
-            left: `${15 + i * 15}%`,
-            top: `${10 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            y: [0, 30, 0],
-            x: [0, 10, -10, 0],
-            rotate: [0, 15, -15, 0],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 4 + i * 0.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.3,
-          }}
-        >
-          ✿
-        </motion.div>
-      ))}
     </section>
   );
 };

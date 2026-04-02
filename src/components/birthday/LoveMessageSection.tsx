@@ -1,6 +1,5 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import cuteCharacter from "@/assets/cute-character.png";
 
 const LoveMessageSection = () => {
   const ref = useRef(null);
@@ -22,15 +21,15 @@ const LoveMessageSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-24 md:py-36 px-6 bg-gradient-section relative overflow-hidden">
+    <section ref={ref} className="py-28 md:py-40 px-6 bg-gradient-section relative overflow-hidden">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.9 }}
+          className="text-center mb-24"
         >
-          <p className="font-body text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
+          <p className="font-body text-xs tracking-[0.4em] uppercase text-muted-foreground mb-5">
             Words from my heart
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground">
@@ -38,19 +37,19 @@ const LoveMessageSection = () => {
           </h2>
         </motion.div>
 
-        <div className="space-y-20">
+        <div className="space-y-24">
           {messages.map((msg, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 + i * 0.2 }}
+              transition={{ duration: 0.9, delay: 0.2 + i * 0.25 }}
               className="relative"
             >
               <div className={`flex flex-col ${i % 2 === 0 ? "items-start text-left" : "items-end text-right"} max-w-2xl ${i % 2 === 0 ? "" : "ml-auto"}`}>
-                <span className="text-6xl text-primary/20 font-display leading-none mb-2">"</span>
-                <p className="font-letter text-2xl md:text-3xl italic text-foreground/90 leading-relaxed mb-3">
-                  {msg.quote}
+                <div className="w-8 h-px bg-primary/30 mb-6" />
+                <p className="font-letter text-2xl md:text-3xl italic text-foreground/85 leading-relaxed mb-4">
+                  "{msg.quote}"
                 </p>
                 <p className="font-body text-sm text-muted-foreground">
                   {msg.sub}
@@ -59,25 +58,6 @@ const LoveMessageSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Cute character */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="flex justify-center mt-16"
-        >
-          <motion.img
-            src={cuteCharacter}
-            alt="Cute bunny with a heart balloon"
-            className="w-28 md:w-36 opacity-80"
-            width={512}
-            height={512}
-            loading="lazy"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-          />
-        </motion.div>
       </div>
     </section>
   );
