@@ -6,17 +6,17 @@ const FooterSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <footer ref={ref} className="py-20 px-6 bg-gradient-section">
+    <footer ref={ref} className="py-24 px-6 bg-gradient-section">
       <motion.div
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1.2 }}
         className="max-w-2xl mx-auto text-center"
       >
-        <p className="font-display text-2xl md:text-3xl italic text-foreground/70 mb-4">
+        <div className="w-12 h-px bg-primary/25 mx-auto mb-8" />
+        <p className="font-display text-xl md:text-2xl italic text-foreground/60">
           Made with love, just for you.
         </p>
-        <p className="text-primary text-3xl animate-pulse-soft">♥</p>
       </motion.div>
     </footer>
   );
