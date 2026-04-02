@@ -49,7 +49,7 @@ const LetterSection = () => {
               transition={{ delay: 0.6, duration: 0.9 }}
               className="font-letter text-2xl md:text-3xl italic text-burgundy mb-10"
             >
-              My Dearest,
+              My Malkin,
             </motion.h3>
 
             <motion.div
