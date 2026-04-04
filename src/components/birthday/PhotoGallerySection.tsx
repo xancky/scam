@@ -1,9 +1,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
+import gallery1 from "@/assets/beach.jpeg";
+import gallery2 from "@/assets/Flowers.jpeg";
+import gallery3 from "@/assets/traditional.jpeg";
+import gallery4 from "@/assets/nightsky.jpeg";
 
 const photos = [
   { src: gallery1, alt: "Sunset together", caption: "Where every sunset reminds me of you" },
@@ -29,7 +29,7 @@ const PhotoGallerySection = () => {
             Our moments
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground">
-            A Gallery of <span className="italic text-primary">Us</span>
+            Glimpse of Eternal <span className="italic text-primary">Beauty</span>
           </h2>
         </motion.div>
 
@@ -42,7 +42,7 @@ const PhotoGallerySection = () => {
               transition={{ duration: 0.7, delay: i * 0.15 }}
               className="group relative overflow-hidden rounded-lg shadow-romantic cursor-pointer"
             >
-              <div className="aspect-[4/5] md:aspect-[4/3] overflow-hidden">
+              <div className="aspect-[3/5] md:aspect-[4/5] overflow-hidden">
                 <motion.img
                   src={photo.src}
                   alt={photo.alt}

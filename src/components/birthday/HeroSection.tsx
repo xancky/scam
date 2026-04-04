@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero.png";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center ">
       <div className="absolute inset-0">
         <img
           src={heroBg}
@@ -30,9 +30,15 @@ const HeroSection = () => {
             A celebration of you
           </motion.p>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
-            <span className="text-gradient-rose">Happy Birthday</span>
-          </h1>
+         <div className="py-6">
+  <motion.h1
+    className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.2] mb-8 text-gradient-rose py-4"
+    animate={{ scale: [1, 1.05, 1] }}
+    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+  >
+    Happy Birthday
+  </motion.h1>
+</div>
 
           <motion.p
             className="font-letter text-xl md:text-2xl italic text-foreground/70 mb-12"
