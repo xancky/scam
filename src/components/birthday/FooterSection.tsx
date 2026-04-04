@@ -15,7 +15,7 @@ const FooterSection = () => {
       >
         <div className="w-12 h-px bg-primary/25 mx-auto mb-8" />
         <p className="font-display text-xl md:text-2xl italic text-foreground/60">
-          Made with love, just for you.
+          {/* Made with love, just for you. */}
         </p>
       </motion.div>
     </footer>
