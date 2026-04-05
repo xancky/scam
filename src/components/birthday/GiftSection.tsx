@@ -141,7 +141,7 @@ const GiftSection = () => {
                   transition={{ delay: 0.3, duration: 0.8 }}
                   className="text-4xl md:text-5xl font-semibold text-primary mb-6"
                 >
-                  Happy Birthday
+                  Happy Birthday 
                 </motion.h3>
 
                 {/* MESSAGE */}

@@ -59,32 +59,50 @@ const LetterSection = () => {
               className="font-letter text-lg md:text-xl leading-[2] text-burgundy/80 space-y-7"
             >
               <p>
-                On this beautiful day, the world became a little more magical because you were born into it. 
-                I want you to know that you are the most extraordinary thing that has ever happened to me — 
-                not just in the grand, sweeping moments, but in the quiet ones too. In the way you laugh 
-                when you think no one is watching. In the way you care so deeply about the people you love. 
-                In the way you make even ordinary days feel like something worth remembering.
-              </p>
+  Pata hai… kuch log life me aise aate hain jo sab kuch change kar dete hain — aur aap mere liye wahi hain. 
+  Aapse milne ke baad life bas chal nahi rahi… genuinely feel ho rahi hai.
+</p>
 
-              <p>
-                Every day I spend with you teaches me something new about love — that it isn't just a feeling, 
-                but a choice I make every morning when I wake up and think of you. It's in the small things: 
-                your voice when you're tired, the way your eyes light up when you're excited, the warmth of 
-                your presence even when we're miles apart.
-              </p>
+<p>
+  Aapki har chhoti cheez mujhe yaad rehti hai — aapki woh cute si weird laugh, bina baat ke thoda gussa hona, 
+  nakhre dikhana… aur sach bolu toh, mujhe aapke nakhre uthana bohot pasand hai.  
+  Aur sabse zyada, aapka woh caring nature… jo shayad aap khud bhi realize nahi karti. 
+  Aap itni pure hain na… ki kabhi kabhi lagta hai duniya aap jaisi ho jaaye toh sab kitna simple ho jaaye.
+</p>
 
-              <p>
-                You deserve the world and every beautiful thing in it. I may not be able to give you the stars, 
-                but I promise to spend every day making sure you know how deeply, truly, and endlessly you are loved.
-              </p>
+<p>
+  Main perfect nahi hoon, kabhi kabhi galtiyan karta hoon… par ek cheez kabhi change nahi hogi — 
+  aapki value meri life me. I swear, jitna main aapse pyaar karta hoon na, shayad kisi aur ko kabhi waise 
+  na kar paun. Aap mere liye sirf “important” nahi hain… aap meri habit hain, meri peace hain, aur honestly, 
+  meri biggest weakness bhi.
+</p>
 
-              <p>
-                Happy Birthday, my love. Today is yours — and so is my heart. Forever.
-              </p>
+<p>
+  Jab aap khush hoti hain na, mujhe andar se ek alag hi sukoon milta hai. Aur jab aap thodi si bhi upset hoti hain, 
+  bas dimaag me yahi chalta rehta hai — kya karu ki aap theek ho jaayein, kaise aapko better feel karaun. 
+  Itna impact hai aapka mujhpe.
+</p>
 
+<p>
+  Main shayad aapke liye perfect nahi hoon… par ek promise hai — main har din aapke liye better banne ki 
+  koshish karunga, aur hamesha aapke saath rahunga. Touchwood, koi bhi ladki aapke aage compete nahi kar sakti. 
+  Mujhe aapko aur samajhna hai, aapse aur seekhna hai.
+</p>
+
+<p>
+  Sach me, sirf mera mind nahi… aap meri poori personality takeover kar rahi hain.  
+  Mera attitude, mere reactions, mera side-eye… sab aap jaisa hota ja raha hai — aur mujhe yeh bhi pasand hai.
+</p>
+
+<p>
+  Aaj ka din sirf aapka hai… aur honestly, meri har dua me sirf aap hain   
+  Happy Birthday, meri favourite person.  
+  Stay the same… kyunki aap jaisi hain, mere liye waise hi perfect hain ✨
+</p>
               <p className="text-right pt-6">
                 <span className="font-display text-lg italic text-primary">
-                  — With all my love, always
+                  — With all my love, always<br/>
+                  <b>YOUR STUPID</b>
                 </span>
               </p>
             </motion.div>
