@@ -12,6 +12,9 @@ const letterParagraphs = [
   "Aaj ka din sirf aapka hai… aur honestly, meri har dua me sirf aap hain Happy Birthday, meri favourite person. Stay the same… kyunki aap jaisi hain, mere liye waise hi perfect hain ✨"
 ];
 
+// PERFECT ALIGNMENT CONSTANT: Use this JS variable instead of CSS variables to avoid React errors
+const LINE_HEIGHT = 36; 
+
 const LetterSection = () => {
   const [isOpened, setIsOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -38,7 +41,7 @@ const LetterSection = () => {
   return (
     <section className="py-28 md:py-40 px-6 bg-[#fffbfb] relative overflow-hidden font-sans flex flex-col items-center justify-center min-h-screen">
       
-      <audio ref={audioRef} src="/your-song-or-voicenote.mp3" preload="auto" />
+      <audio ref={audioRef} src="/bairan.mp3" preload="auto" />
 
       <AnimatePresence mode="wait">
         
@@ -97,8 +100,6 @@ const LetterSection = () => {
             animate={{ opacity: 1, scaleY: 1, originY: 0 }} 
             transition={{ duration: 1.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }} 
             className="max-w-3xl mx-auto relative z-10 w-full"
-            // THE FIX: Define the master line height here. Everything follows this.
-            style={{ "--line-height": "32px" }} 
           >
             <motion.div
               initial={{ opacity: 0 }}
@@ -139,13 +140,13 @@ const LetterSection = () => {
             <div
               className="bg-[#fdfbf7] rounded-sm relative shadow-2xl shadow-rose-900/5 mx-auto w-full border border-neutral-100 overflow-hidden"
               style={{
-                // Padding top must be an exact multiple of line-height (e.g., 32px * 2 = 64px)
-                paddingTop: "64px", 
-                paddingBottom: "64px",
-                // The repeating gradient is locked to --line-height
-                backgroundImage: `repeating-linear-gradient(transparent, transparent calc(var(--line-height) - 1px), #fbcfe8 calc(var(--line-height) - 1px), #fbcfe8 var(--line-height))`,
-                // Force background to start exactly from the top
-                backgroundPosition: "0 0",
+                // Strict math: Padding is exactly 2x the line height (72px)
+                paddingTop: `${LINE_HEIGHT * 2}px`, 
+                paddingBottom: `${LINE_HEIGHT * 2}px`,
+                // Drawing the pink lines using the JS variable
+                backgroundImage: `repeating-linear-gradient(transparent, transparent ${LINE_HEIGHT - 1}px, #fbcfe8 ${LINE_HEIGHT - 1}px, #fbcfe8 ${LINE_HEIGHT}px)`,
+                // Pushing the lines slightly down so the font sits ON the line, not strictly middle-aligned
+                backgroundPosition: "0 8px",
               }}
             >
               <div className="absolute inset-0 opacity-[0.02] mix-blend-multiply pointer-events-none" 
@@ -164,9 +165,8 @@ const LetterSection = () => {
                   transition={{ delay: 1.5, duration: 1 }}
                   className="font-letter text-3xl md:text-4xl italic text-rose-900 m-0"
                   style={{ 
-                    lineHeight: "var(--line-height)", 
-                    // Add margin bottom exactly equal to line height
-                    marginBottom: "var(--line-height)" 
+                    lineHeight: `${LINE_HEIGHT}px`, 
+                    marginBottom: `${LINE_HEIGHT}px` // Gap exactly equal to 1 line
                   }}
                 >
                   My Malkin,
@@ -181,11 +181,10 @@ const LetterSection = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.1 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      className="m-0" // Reset default browser margins
+                      className="m-0" // Important: Reset Tailwind margins
                       style={{ 
-                        lineHeight: "var(--line-height)",
-                        // Exact spacing between paragraphs
-                        marginBottom: "var(--line-height)" 
+                        lineHeight: `${LINE_HEIGHT}px`,
+                        marginBottom: `${LINE_HEIGHT}px` // Gap exactly equal to 1 line
                       }}
                     >
                       {para}
@@ -203,13 +202,13 @@ const LetterSection = () => {
                 >
                   <span 
                     className="font-display text-xl md:text-2xl italic text-rose-500 block m-0"
-                    style={{ lineHeight: "var(--line-height)" }}
+                    style={{ lineHeight: `${LINE_HEIGHT}px` }}
                   >
                     — With all my love, always
                   </span>
                   <span 
                     className="font-display text-2xl md:text-3xl font-bold text-rose-800 block m-0"
-                    style={{ lineHeight: "var(--line-height)" }}
+                    style={{ lineHeight: `${LINE_HEIGHT}px` }}
                   >
                     YOUR STUPID
                   </span>
