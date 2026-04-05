@@ -154,7 +154,8 @@ const GiftSection = () => {
                   You came into my life quietly,  
                   but you became everything I never knew I needed.  
                   Every moment with you feels softer, warmer, and more real.  
-                  I don’t just love you — I feel lucky to have you.
+                  I don’t just love you — I feel lucky to have you.<br/>
+                  I Love You ❤️
                 </motion.p>
 
                 {/* DIVIDER */}
