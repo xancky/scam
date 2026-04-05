@@ -29,7 +29,7 @@ const PhotoGallerySection = () => {
             Our moments
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground">
-            Glimpse of Eternal <span className="italic text-primary">Beauty</span>
+            A life I see with  <span className="italic text-primary"><strong>YOU</strong></span>
           </h2>
         </motion.div>
 
