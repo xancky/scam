@@ -1,43 +1,61 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
 import confetti from "canvas-confetti";
-import gallery5 from "@/assets/dumbass.jpeg"; // Make sure this is her cutest picture!
+// Make sure this path is correct and Next.js is handling the static import
+import gallery5 from "@/assets/dumbass.jpeg"; 
 
 const GiftSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  
   const [isOpened, setIsOpened] = useState(false);
+  const [tapCount, setTapCount] = useState(0); // State for the 3-tap logic
 
-  const handleOpen = useCallback(() => {
+  const handleTap = useCallback(() => {
     if (isOpened) return;
-    setIsOpened(true);
 
-    // Confetti matching our rose/pink aesthetic
-    const duration = 3000;
-    const end = Date.now() + duration;
-    const colors = ["#fda4af", "#f43f5e", "#ffe4e6", "#fecdd3"];
+    if (tapCount < 2) {
+      // Increment tap count and trigger the wiggle animation
+      setTapCount((prev) => prev + 1);
+    } else {
+      // 3rd Tap! Open the box
+      setIsOpened(true);
 
-    const frame = () => {
-      confetti({
-        particleCount: 4,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0, y: 0.8 },
-        colors,
-      });
-      confetti({
-        particleCount: 4,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1, y: 0.8 },
-        colors,
-      });
+      // Confetti matching our rose/pink aesthetic
+      const duration = 3000;
+      const end = Date.now() + duration;
+      const colors = ["#fda4af", "#f43f5e", "#ffe4e6", "#fecdd3"];
 
-      if (Date.now() < end) requestAnimationFrame(frame);
-    };
+      const frame = () => {
+        confetti({
+          particleCount: 4,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.8 },
+          colors,
+        });
+        confetti({
+          particleCount: 4,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.8 },
+          colors,
+        });
 
-    frame();
-  }, [isOpened]);
+        if (Date.now() < end) requestAnimationFrame(frame);
+      };
+
+      frame();
+    }
+  }, [isOpened, tapCount]);
+
+  // Dynamic text based on how many times she tapped
+  const getTapText = () => {
+    if (tapCount === 0) return "Tap 3 times to unwrap";
+    if (tapCount === 1) return "2 more taps...";
+    if (tapCount === 2) return "Almost there...";
+    return "";
+  };
 
   return (
     <section ref={ref} className="pt-32 pb-16 px-6 relative overflow-hidden bg-[#fffbfb] min-h-screen flex flex-col justify-between font-sans">
@@ -54,7 +72,7 @@ const GiftSection = () => {
                ========================================= */
             <motion.div
               key="closed"
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center"
             >
@@ -74,13 +92,20 @@ const GiftSection = () => {
               </motion.div>
 
               <motion.button
-                onClick={handleOpen}
+                onClick={handleTap}
                 className="relative group cursor-pointer focus:outline-none"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                // The idle floating animation before she touches it
+                animate={{ y: [0, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               >
-                {/* Premium Gift Box Animation */}
-                <div className="w-40 h-40 md:w-48 md:h-48 relative shadow-2xl shadow-rose-900/10 rounded-xl bg-white border border-rose-50 flex items-center justify-center overflow-hidden">
+                {/* Premium Gift Box Animation - Reacts to taps */}
+                <motion.div 
+                  key={tapCount} // Forces animation to re-run every time tapCount changes
+                  initial={tapCount > 0 ? { rotate: -5, scale: 0.95 } : {}}
+                  animate={tapCount > 0 ? { rotate: [0, -10, 10, -10, 10, 0], scale: 1 } : {}}
+                  transition={{ duration: 0.4 }}
+                  className="w-40 h-40 md:w-48 md:h-48 relative shadow-2xl shadow-rose-900/10 rounded-xl bg-white border border-rose-50 flex items-center justify-center overflow-hidden"
+                >
                   
                   {/* Glowing background inside box */}
                   <div className="absolute inset-0 bg-gradient-to-br from-rose-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -94,14 +119,16 @@ const GiftSection = () => {
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-rose-400 rounded-sm rotate-45 shadow-md flex items-center justify-center">
                     <div className="w-4 h-4 bg-rose-300 rounded-sm" />
                   </div>
-                </div>
+                </motion.div>
 
+                {/* Dynamic text that changes on every tap */}
                 <motion.p
+                  key={`text-${tapCount}`}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
                   className="mt-8 font-body text-xs tracking-[0.3em] uppercase text-rose-400/80 font-semibold"
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
                 >
-                  Tap to unwrap
+                  {getTapText()}
                 </motion.p>
               </motion.button>
             </motion.div>
@@ -154,7 +181,7 @@ const GiftSection = () => {
 
               {/* The Beautiful Image */}
               <motion.img
-                src={gallery5}
+                src={gallery5 || gallery5} // Added fallback just in case Next.js handles your image import differently
                 alt="Her"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
