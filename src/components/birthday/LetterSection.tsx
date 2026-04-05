@@ -12,9 +12,6 @@ const letterParagraphs = [
   "Aaj ka din sirf aapka hai… aur honestly, meri har dua me sirf aap hain Happy Birthday, meri favourite person. Stay the same… kyunki aap jaisi hain, mere liye waise hi perfect hain ✨"
 ];
 
-// PERFECT ALIGNMENT CONSTANT: Use this JS variable instead of CSS variables to avoid React errors
-const LINE_HEIGHT = 36; 
-
 const LetterSection = () => {
   const [isOpened, setIsOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -92,7 +89,7 @@ const LetterSection = () => {
         ) : (
           
           /* =========================================
-             STATE 2: THE PERFECTLY ALIGNED LETTER
+             STATE 2: THE ELEGANT BLANK LETTER
              ========================================= */
           <motion.div
             key="opened"
@@ -136,44 +133,33 @@ const LetterSection = () => {
               </motion.button>
             </motion.div>
 
-            {/* THE PAPER */}
+            {/* THE PAPER - Removed the pink repeating gradient lines */}
             <div
-              className="bg-[#fdfbf7] rounded-sm relative shadow-2xl shadow-rose-900/5 mx-auto w-full border border-neutral-100 overflow-hidden"
-              style={{
-                // Strict math: Padding is exactly 2x the line height (72px)
-                paddingTop: `${LINE_HEIGHT * 2}px`, 
-                paddingBottom: `${LINE_HEIGHT * 2}px`,
-                // Drawing the pink lines using the JS variable
-                backgroundImage: `repeating-linear-gradient(transparent, transparent ${LINE_HEIGHT - 1}px, #fbcfe8 ${LINE_HEIGHT - 1}px, #fbcfe8 ${LINE_HEIGHT}px)`,
-                // Pushing the lines slightly down so the font sits ON the line, not strictly middle-aligned
-                backgroundPosition: "0 8px",
-              }}
+              className="bg-[#fdfbf7] rounded-md relative shadow-2xl shadow-rose-900/5 mx-auto w-full border border-rose-100 overflow-hidden py-16"
             >
-              <div className="absolute inset-0 opacity-[0.02] mix-blend-multiply pointer-events-none" 
+              {/* Very Subtle Paper Texture Overlay */}
+              <div className="absolute inset-0 opacity-[0.03] mix-blend-multiply pointer-events-none" 
                    style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/paper.png")' }} />
 
-              {/* Red Margins */}
+              {/* Red Margins (kept for the aesthetic) */}
               <div className="absolute top-0 bottom-0 left-12 md:left-16 w-[1.5px] bg-rose-300/50" />
               <div className="absolute top-0 bottom-0 left-[52px] md:left-[68px] w-[0.5px] bg-rose-300/30" />
 
-              <div className="pl-[80px] md:pl-[96px] pr-8 relative z-10">
+              {/* Text Container with clean layout */}
+              <div className="pl-[80px] md:pl-[96px] pr-8 md:pr-16 relative z-10">
                 
                 {/* Salutation */}
                 <motion.h3
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.5, duration: 1 }}
-                  className="font-letter text-3xl md:text-4xl italic text-rose-900 m-0"
-                  style={{ 
-                    lineHeight: `${LINE_HEIGHT}px`, 
-                    marginBottom: `${LINE_HEIGHT}px` // Gap exactly equal to 1 line
-                  }}
+                  className="font-letter text-3xl md:text-4xl italic text-rose-900 mb-8"
                 >
                   My Malkin,
                 </motion.h3>
 
-                {/* Letter Body */}
-                <div className="font-letter text-[17px] md:text-[19px] text-rose-950/80 tracking-wide">
+                {/* Letter Body - Clean spacing, no forced line heights */}
+                <div className="font-letter text-[17px] md:text-[19px] text-rose-950/80 tracking-wide leading-loose space-y-8">
                   {letterParagraphs.map((para, index) => (
                     <motion.p
                       key={index}
@@ -181,11 +167,6 @@ const LetterSection = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.1 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      className="m-0" // Important: Reset Tailwind margins
-                      style={{ 
-                        lineHeight: `${LINE_HEIGHT}px`,
-                        marginBottom: `${LINE_HEIGHT}px` // Gap exactly equal to 1 line
-                      }}
                     >
                       {para}
                     </motion.p>
@@ -198,18 +179,12 @@ const LetterSection = () => {
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 1.8, duration: 1 }}
                   viewport={{ once: true }}
-                  className="text-right m-0"
+                  className="text-right pt-12"
                 >
-                  <span 
-                    className="font-display text-xl md:text-2xl italic text-rose-500 block m-0"
-                    style={{ lineHeight: `${LINE_HEIGHT}px` }}
-                  >
+                  <span className="font-display text-xl md:text-2xl italic text-rose-500 block mb-1">
                     — With all my love, always
                   </span>
-                  <span 
-                    className="font-display text-2xl md:text-3xl font-bold text-rose-800 block m-0"
-                    style={{ lineHeight: `${LINE_HEIGHT}px` }}
-                  >
+                  <span className="font-display text-2xl md:text-3xl font-bold text-rose-800 block">
                     YOUR STUPID
                   </span>
                 </motion.div>
