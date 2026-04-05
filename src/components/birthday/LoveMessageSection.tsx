@@ -1,9 +1,11 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const LoveMessageSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const [visibleCount, setVisibleCount] = useState(0);
 
   const messages = [
     {
@@ -20,14 +22,25 @@ const LoveMessageSection = () => {
     },
   ];
 
+  const handleReveal = () => {
+    if (visibleCount < messages.length) {
+      setVisibleCount((prev) => prev + 1);
+    }
+  };
+
   return (
-    <section ref={ref} className="py-28 md:py-40 px-6 bg-gradient-section relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-28 md:py-40 px-6 bg-gradient-section relative overflow-hidden text-center"
+    >
       <div className="max-w-4xl mx-auto">
+
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9 }}
-          className="text-center mb-24"
+          className="mb-16"
         >
           <p className="font-body text-xs tracking-[0.4em] uppercase text-muted-foreground mb-5">
             Words from my heart
@@ -37,27 +50,61 @@ const LoveMessageSection = () => {
           </h2>
         </motion.div>
 
+        {/* FIRST BUTTON (initial state) */}
+        {visibleCount === 0 && (
+          <motion.button
+            onClick={handleReveal}
+            whileTap={{ scale: 0.95 }}
+            className="mb-16 px-6 py-3 rounded-full bg-primary text-white font-medium shadow-lg"
+          >
+            Tap to reveal 💌
+          </motion.button>
+        )}
+
+        {/* Messages */}
         <div className="space-y-24">
-          {messages.map((msg, i) => (
+          {messages.slice(0, visibleCount).map((msg, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.9, delay: 0.2 + i * 0.25 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className={`flex flex-col ${i % 2 === 0 ? "items-start text-left" : "items-end text-right"} max-w-2xl ${i % 2 === 0 ? "" : "ml-auto"}`}>
+              <div
+                className={`flex flex-col ${
+                  i % 2 === 0
+                    ? "items-start text-left"
+                    : "items-end text-right ml-auto"
+                } max-w-2xl`}
+              >
                 <div className="w-8 h-px bg-primary/30 mb-6" />
+
                 <p className="font-letter text-2xl md:text-3xl italic text-foreground/85 leading-relaxed mb-4">
                   "{msg.quote}"
                 </p>
-                <p className="font-body text-sm text-muted-foreground">
+
+                <p className="font-body text-sm text-muted-foreground mb-6">
                   {msg.sub}
                 </p>
+
+                {/* 👇 BUTTON UNDER LAST VISIBLE MESSAGE */}
+                {i === visibleCount - 1 && visibleCount < messages.length && (
+                  <motion.button
+                    onClick={handleReveal}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-5 py-2 rounded-full bg-primary text-white text-sm shadow-md"
+                  >
+                    {visibleCount === messages.length - 1
+                      ? "Last one... ❤️"
+                      : "One more thing... 💌"}
+                  </motion.button>
+                )}
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero.png";
-
+import { Typewriter } from "react-simple-typewriter";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center ">
@@ -40,14 +40,22 @@ const HeroSection = () => {
   </motion.h1>
 </div>
 
-          <motion.p
-            className="font-letter text-xl md:text-2xl italic text-foreground/70 mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 1.2 }}
-          >
-            To the one who makes every day feel like a love story
-          </motion.p>
+         <motion.p
+  className="font-letter text-xl md:text-2xl italic text-foreground/70 mb-12"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 1, duration: 1.2 }}
+>
+  <Typewriter
+    words={["To the one who makes every day feel like a love story ❤️"]}
+    loop={1}
+    cursor
+    cursorStyle="|"
+    typeSpeed={50}
+    deleteSpeed={0}
+    delaySpeed={1000}
+  />
+</motion.p>
 
           <motion.div
             initial={{ opacity: 0 }}
